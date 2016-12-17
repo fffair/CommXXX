@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+	   div {
+            overflow: scroll;
+           float: left;
+        }
+        #div1 {
+            height : 300px;
+            width: 200px;
+        }
+        p { 
+            background: linear-gradient(to bottom, white, black);
+            margin: 0;
+        }
+        #div2 {
+            width: 200px;
+            margin-left: 50px;
+        }
+        #box {
+            border: 1px solid red;
+        }
+        #box2 {
+            border: 1px solid blue;
+        }
+        #box3 {
+            border: 1px solid green;
+        }
+        .ripper {
+            z-index: -1;
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left:50%;
+            top:50%;
+            -webkit-transform: translate(-50%, -50%) scale(.1,.1);
+            transform-origin: center center;
+        }        
+</style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	
+<div class="contentWrap"> 
+    <div id="div1">
+        <p>On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly. To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide reset commands so that you can always restore the look of your document to the original contained in your current template. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document.</p>
+    </div>
+
+    <div id="div2">
+        <p>On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly. To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide reset commands so that you can always restore the look of your document to the original contained in your current template. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document.
+    You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly. To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide reset commands so that you can always restore the look of your document to the original contained in your current template. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks.
+    When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly. To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide reset commands so that you can always restore the look of your document to the original contained in your current template. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look.</p>
+</div>
+</div> 
+<div class="boxWrap">
+	<div class="ripper" id="box"></div>
+    <div class="ripper" id="box2"></div>
+    <div class="ripper" id="box3"></div>
+    <div class="ripper" id="box4"></div>
+</div>    
+      
+
+<script type="text/javascript">
+	var $divs = $('#div1, #div2');
+	var $box = $('#box');
+    var $box2 = $('#box2');
+    var $box3 = $('#box3');
+    var kids = $('.boxWrap').children().length;
+
+
+var hauteur = jQuery(window).height();
+jQuery("#div2").css("height",hauteur );
+
+var sync = function(e){
+    var $other = $divs.not(this).off('scroll');
+    var other = $other.get(0);
+    var percentage = this.scrollTop / (this.scrollHeight );
+    other.scrollTop = percentage * (other.scrollHeight );
+    $box.css({transform: 'translate(-50%,-50%) scale(' + (percentage * 100) + ', ' + (percentage * 100) + ')'});
+    $box2.css({transform: 'translate(-50%,-50%) scale(' + (percentage * 50) + ', ' + (percentage * 50) + ')'});
+    $box3.css({transform: 'translate(-50%,-50%) scale(' + (percentage * 25) + ', ' + (percentage * 25) + ')'});
+    $other.on('scroll', sync );
+}
+$divs.on( 'scroll', sync);
+</script>
+</body>
+</html>
